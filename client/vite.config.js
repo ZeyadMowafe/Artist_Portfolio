@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from 'tailwindcss'
 
 export default defineConfig({
-  base: '/Artist_Portfolio/',
+  base: '/',
   plugins: [react()],
   css: {
     postcss: {
