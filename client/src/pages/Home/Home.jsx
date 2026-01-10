@@ -1,5 +1,5 @@
 import React from 'react';
-import Hero from './hero.jsx';
+import Hero from './Hero.jsx';
 
 // Placeholder images - replace with your actual artwork images
 import Art5 from '../../Assets/art5.jpg';
