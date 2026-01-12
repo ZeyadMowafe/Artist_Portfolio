@@ -1,7 +1,7 @@
 import React from 'react';
 import { Award, Briefcase, GraduationCap, Heart } from 'lucide-react';
-import StudioImage from '../../assets/Art_profile.jpg';
-import AboutMeImage from '../../assets/Art_aboutme.jpg';
+import StudioImage from '/src/assets/Art_profile.jpg';
+import AboutMeImage from '/src/assets/Art_aboutme.jpg';
 
 function AboutMe() {
   const values = [
