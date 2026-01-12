@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 // Import your artwork images - replace with your actual images
-import Art1 from '../../assets/Art_works1.jpg';
-import Art2 from '../../assets/Art_works2.jpg';
-import Art3 from '../../assets/Art_works3.jpg';
-import Art4 from '../../assets/Art_works4.jpg';
-import Art5 from '../../assets/Art_works5.jpg';
-import Art6 from '../../assets/Art_works6.jpg';
-import Art7 from '../../assets/Art_works7.jpg'; 
+import Art1 from '/src/assets/Art_works1.jpg';
+import Art2 from '/src/assets/Art_works2.jpg';
+import Art3 from '/src/assets/Art_works3.jpg';
+import Art4 from '/src/assets/Art_works4.jpg';
+import Art5 from '/src/assets/Art_works5.jpg';
+import Art6 from '/src/assets/Art_works6.jpg';
+import Art7 from '/src/assets/Art_works7.jpg'; 
 
 function Works() {
   const [selectedArtwork, setSelectedArtwork] = useState(null);
