@@ -2,8 +2,8 @@ import React from 'react';
 import Hero from './Hero.jsx';
 
 // Placeholder images - replace with your actual artwork images
-import Art5 from '../../assets/art5.jpg';
-import Art6 from '../../assets/art6.jpg';
+import Art5 from '../../assets/art5.JPG';
+import Art6 from '../../assets/art6.JPG';
 
 function Home() {
   return (
