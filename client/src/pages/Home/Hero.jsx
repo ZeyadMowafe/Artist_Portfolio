@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 // Placeholder images - replace with your actual images
 import Art3 from "../../assets/art3.jpg";
-import Art4 from "../../assets/art4.jpg";
+import Art4 from "../../assets/art4.JPG";
 
 function Hero() {
   return (
