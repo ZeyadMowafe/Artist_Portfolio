@@ -23,11 +23,12 @@ function Navbar() {
     setIsOpen(false);
   };
 
-  const navLinks = [
-    { name: "MY WORKS", href: "/works" },
-    { name: "ABOUT ME", href: "/about", isRoute: true },
-    { name: "CONTACT", href: "#contact", isContact: true },
-  ];
+ const navLinks = [
+  { name: "MY WORKS", href: "/works", isRoute: true },
+  { name: "ABOUT ME", href: "/about", isRoute: true },
+  { name: "CONTACT", href: "#contact", isContact: true },
+];
+
 
   const socialLinks = [
     {
