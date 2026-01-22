@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Hero from './Hero.jsx';
 
 // Placeholder images - replace with your actual artwork images
@@ -6,9 +7,14 @@ import Art5 from '../../assets/art5.JPG';
 import Art6 from '../../assets/art6.JPG';
 
 function Home() {
+  // Function to scroll to top
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section - هيظهر تحت الـ Navbar */}
+      {/* Hero Section */}
       <Hero />
 
       {/* Works Section */}
@@ -29,8 +35,9 @@ function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
             
             {/* Left Artwork */}
-            <a 
-              href="/works" 
+            <Link 
+              to="/works"
+              onClick={scrollToTop}
               className="group relative overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 block"
             >
               <div className="relative aspect-[16/10] overflow-hidden">
@@ -39,10 +46,8 @@ function Home() {
                   alt="Artwork 1"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
-                {/* Overlay - Always visible on mobile, hover on desktop */}
                 <div className="absolute inset-0 bg-black/40 md:bg-black/0 md:group-hover:bg-black/40 transition-all duration-500"></div>
                 
-                {/* Text Overlay - Always visible on mobile, hover on desktop */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500">
                   <p 
                     className="text-white text-2xl md:text-3xl lg:text-4xl font-semibold mb-2 tracking-wider"
@@ -58,11 +63,12 @@ function Home() {
                   </p>
                 </div>
               </div>
-            </a>
+            </Link>
 
             {/* Right Artwork */}
-            <a 
-              href="/works" 
+            <Link 
+              to="/works"
+              onClick={scrollToTop}
               className="group relative overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 block"
             >
               <div className="relative aspect-[16/10] overflow-hidden">
@@ -71,10 +77,8 @@ function Home() {
                   alt="Artwork 2"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
-                {/* Overlay - Always visible on mobile, hover on desktop */}
                 <div className="absolute inset-0 bg-black/40 md:bg-black/0 md:group-hover:bg-black/40 transition-all duration-500"></div>
                 
-                {/* Text Overlay - Always visible on mobile, hover on desktop */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500">
                   <p 
                     className="text-white text-2xl md:text-3xl lg:text-4xl font-semibold mb-2 tracking-wider"
@@ -90,7 +94,7 @@ function Home() {
                   </p>
                 </div>
               </div>
-            </a>
+            </Link>
 
           </div>
 
