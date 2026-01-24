@@ -29,12 +29,12 @@ function MessageForm({ isOpen, onClose }) {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          access_key: '0041b8b6-1cc2-4aa3-bf75-027213881cff', // ضع الـ Access Key هنا
+          access_key: '0041b8b6-1cc2-4aa3-bf75-027213881cff',
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
           message: formData.message,
-          subject: 'New Contact Form Message' // اختياري
+          subject: 'New Contact Form Message'
         })
       });
 
@@ -44,7 +44,7 @@ function MessageForm({ isOpen, onClose }) {
         setSubmitStatus('success');
         setFormData({ name: '', email: '', phone: '', message: '' });
         
-        // إغلاق النافذة بعد 2 ثانية
+        // Close window after 2 seconds
         setTimeout(() => {
           onClose();
           setSubmitStatus(null);
@@ -95,13 +95,13 @@ function MessageForm({ isOpen, onClose }) {
           {/* Success/Error Messages */}
           {submitStatus === 'success' && (
             <div className="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded">
-              ✅ تم إرسال رسالتك بنجاح!
+               Your message has been sent successfully!
             </div>
           )}
           
           {submitStatus === 'error' && (
             <div className="mb-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
-              ❌ حدث خطأ، حاول مرة أخرى
+               An error occurred, please try again
             </div>
           )}
 
@@ -219,7 +219,7 @@ function MessageForm({ isOpen, onClose }) {
               className="w-full px-8 py-4 bg-gray-900 text-white text-lg font-light tracking-wider hover:bg-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
               style={{ fontFamily: 'Cinzel, serif' }}
             >
-              {isSubmitting ? 'جاري الإرسال...' : 'SEND MESSAGE'}
+              {isSubmitting ? 'SENDING...' : 'SEND MESSAGE'}
             </button>
 
           </form>
