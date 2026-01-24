@@ -7,6 +7,8 @@ function MessageForm({ isOpen, onClose }) {
     phone: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success' or 'error'
 
   const handleInputChange = (e) => {
     setFormData({
@@ -15,12 +17,47 @@ function MessageForm({ isOpen, onClose }) {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-    // Close the box after submission
-    onClose();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: '0041b8b6-1cc2-4aa3-bf75-027213881cff', // ضع الـ Access Key هنا
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+          subject: 'New Contact Form Message' // اختياري
+        })
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', phone: '', message: '' });
+        
+        // إغلاق النافذة بعد 2 ثانية
+        setTimeout(() => {
+          onClose();
+          setSubmitStatus(null);
+        }, 2000);
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (!isOpen) return null;
@@ -55,6 +92,19 @@ function MessageForm({ isOpen, onClose }) {
             WRITE A MESSAGE
           </h3>
 
+          {/* Success/Error Messages */}
+          {submitStatus === 'success' && (
+            <div className="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded">
+              ✅ تم إرسال رسالتك بنجاح!
+            </div>
+          )}
+          
+          {submitStatus === 'error' && (
+            <div className="mb-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
+              ❌ حدث خطأ، حاول مرة أخرى
+            </div>
+          )}
+
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-8">
             
@@ -75,6 +125,7 @@ function MessageForm({ isOpen, onClose }) {
                 className="w-full px-4 py-3 border border-gray-300 focus:border-gray-900 focus:outline-none transition-colors duration-300 text-gray-900"
                 style={{ fontFamily: 'Inter, sans-serif' }}
                 required
+                disabled={isSubmitting}
               />
             </div>
 
@@ -95,6 +146,7 @@ function MessageForm({ isOpen, onClose }) {
                 className="w-full px-4 py-3 border border-gray-300 focus:border-gray-900 focus:outline-none transition-colors duration-300 text-gray-900"
                 style={{ fontFamily: 'Inter, sans-serif' }}
                 required
+                disabled={isSubmitting}
               />
             </div>
 
@@ -114,6 +166,7 @@ function MessageForm({ isOpen, onClose }) {
                 placeholder="PHONE NUMBER"
                 className="w-full px-4 py-3 border border-gray-300 focus:border-gray-900 focus:outline-none transition-colors duration-300 text-gray-900"
                 style={{ fontFamily: 'Inter, sans-serif' }}
+                disabled={isSubmitting}
               />
             </div>
 
@@ -134,6 +187,7 @@ function MessageForm({ isOpen, onClose }) {
                 className="w-full px-4 py-3 border border-gray-300 focus:border-gray-900 focus:outline-none transition-colors duration-300 text-gray-900 resize-none"
                 style={{ fontFamily: 'Inter, sans-serif' }}
                 required
+                disabled={isSubmitting}
               ></textarea>
             </div>
 
@@ -144,6 +198,7 @@ function MessageForm({ isOpen, onClose }) {
                 id="privacy"
                 className="mt-1"
                 required
+                disabled={isSubmitting}
               />
               <label 
                 htmlFor="privacy"
@@ -160,10 +215,11 @@ function MessageForm({ isOpen, onClose }) {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full px-8 py-4 bg-gray-900 text-white text-lg font-light tracking-wider hover:bg-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl"
+              disabled={isSubmitting}
+              className="w-full px-8 py-4 bg-gray-900 text-white text-lg font-light tracking-wider hover:bg-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
               style={{ fontFamily: 'Cinzel, serif' }}
             >
-              SEND MESSAGE
+              {isSubmitting ? 'جاري الإرسال...' : 'SEND MESSAGE'}
             </button>
 
           </form>
