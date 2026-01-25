@@ -94,13 +94,6 @@ function Footer() {
             >
               ABOUT ME
             </a>
-            <a 
-              href="#contact" 
-              className="text-gray-300 hover:text-white transition-colors text-sm font-light tracking-wider"
-              style={{ fontFamily: 'Inter, sans-serif' }}
-            >
-              CONTACT
-            </a>
           </div>
         </div>
 
